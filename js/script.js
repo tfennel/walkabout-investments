@@ -62,13 +62,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
+                // Add animation to section content, but exclude headings
+                const section = entry.target;
+                const heading = section.querySelector('h2');
+                
+                // Protect heading from animation
+                if (heading) {
+                    heading.style.opacity = '1';
+                    heading.style.transform = 'none';
+                    heading.style.animation = 'none';
+                }
+                
+                // Apply animation to the section
+                section.classList.add('fade-in-up');
             }
         });
     }, observerOptions);
     
-    // Observe sections for animation
-    const sections = document.querySelectorAll('section');
+    // Observe sections for animation (exclude about section)
+    const sections = document.querySelectorAll('section:not(#about)');
     sections.forEach(section => {
         observer.observe(section);
     });

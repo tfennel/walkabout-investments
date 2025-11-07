@@ -79,6 +79,11 @@ section {
     color: var(--dark-color);
     font-weight: 600;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 11;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 #about h5 {
